@@ -21,6 +21,8 @@ import { ShowprofileComponent } from './showprofile/showprofile.component';
 import { FacebookModule } from 'ng2-facebook-sdk';
 import { FormBuilder, FormGroup, FormControl, Validators ,FormArray ,ReactiveFormsModule} from '@angular/forms';
 import { CustomerBillComponent } from './customer-bill/customer-bill.component';
+import {AuthGuard} from './guards/auth-guard.service';
+import { AuthService, AppGlobals } from 'angular2-google-login';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,7 @@ import { CustomerBillComponent } from './customer-bill/customer-bill.component';
     FacebookModule.forRoot()
 
   ],
-  providers: [ExampleServiceService],
+  providers: [ExampleServiceService,AuthGuard,AuthService],
   bootstrap: [AppComponent]
   
 })

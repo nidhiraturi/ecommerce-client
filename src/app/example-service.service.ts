@@ -17,6 +17,9 @@ export class ExampleServiceService {
 data12:any;
 grandTotal:any;
 customer = {};
+userr:any;
+total;
+
 
   // getCustomers(val): Observable<any> {
 
@@ -73,6 +76,15 @@ getProductById(item): Observable<any> {
 
     return this._http.post('http://localhost:8888/api/v1/Customer/create', form, options).map(data => { });
   }
+
+  postBill(totaldata): Observable<any> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+    console.log(totaldata,"service")
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post('http://localhost:8888/api/v1/Customer/postBill',totaldata, options).map(data=>data.json());
+      }
+
   name;
   setUser(userr) {
     this.customer = userr;
@@ -92,5 +104,16 @@ getProductById(item): Observable<any> {
   {
     console.log("total",this.grandTotal)
     return this.grandTotal;
+  }
+  cart=[];
+  setCart(procart)
+  {
+    this.cart=procart;
+    console.log(this.cart);
+  }
+  getcart():any
+  {
+
+    return this.cart;
   }
 }

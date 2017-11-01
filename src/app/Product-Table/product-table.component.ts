@@ -53,6 +53,7 @@ export class CustomerTableComponent implements OnInit {
     this.cart.push(productId);
     console.log(this.cart)
 
+console.log(this.cart,"in setr");
   }
 i:any;
   showCart() {
@@ -61,6 +62,7 @@ i:any;
 
       this._exampleservice.getProductById(this.cart).subscribe(data => {
         this.item = data;
+        this._exampleservice.setCart(this.item);
      for(let i = 0 ; i < this.item.length ; i++){
           this.item[i].Subtotal = this.item[i].productPrice * this.item[i].productQuantity;
           this.GrandTotal += this.item[i].Subtotal;
@@ -90,34 +92,7 @@ i:any;
   }
   
 
-  //   sortBy(key)
-  // {
-  //   if(key=="Firstname"||key=="Lastname"||key=="Email"){
-  //     this.Customers.sort( function(name1, name2) {
-  //       if ( name1[key].toLowerCase() < name2[key].toLowerCase() ){
-  //         return -1;
-  //       }else if( name1[key].toLowerCase() > name2[key].toLowerCase() ){
-  //           return 1;
-  //       }else{
-  //         return 0;	
-  //       }
-
-
-  //     });
-
-  //   }else{
-  //   this.Customers.sort( function(name1, name2) {
-  //    console.log(name2)
-  //     if ( name1[key]< name2[key] ){
-  //       return -1;
-  //     }else if( name1[key] > name2[key] ){
-  //         return 1;
-  //     }else{
-  //       return 0;	
-  //     }
-
-
-  //   });}
+  
 
   toNextComponent()
   {
@@ -125,6 +100,9 @@ i:any;
 
     this._exampleservice.setTotal(this.GrandTotal);
     this.route.navigate(['bill']);
+  }
+  logout(){
+    localStorage.clear();
   }
 
 }

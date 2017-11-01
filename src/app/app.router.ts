@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { ShowprofileComponent } from './showprofile/showprofile.component';
 import { CustomerBillComponent } from './customer-bill/customer-bill.component';
+import {AuthGuard} from './guards/auth-guard.service';
 export const appRoutes: Routes = [
 
 
@@ -18,7 +19,7 @@ export const appRoutes: Routes = [
     { path: 'customerdetail/:id', component: CustomerDetailComponent },
     { path: 'sign', component: SignupComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'productlist', component: CustomerTableComponent },
+    { path: 'productlist', component: CustomerTableComponent ,canActivate: [AuthGuard], data: [{ loginStatus: '1' }] },
     { path: 'productdetail', component: CustomerDetailComponent },
     { path: 'editprofile', component: EditprofileComponent },
     { path: 'showprofile', component: ShowprofileComponent },
